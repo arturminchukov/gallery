@@ -1,0 +1,17 @@
+.Preview {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.Preview__image {
+    height: 100%;
+    width: auto;
+}
+
+.Preview__image2 {
+    width: 100%;
+    height: auto;
+}

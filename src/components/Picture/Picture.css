@@ -1,0 +1,12 @@
+.Picture__item {
+    width: 100%;
+    height: auto;
+    grid-row: span 1;
+}
+
+@media screen and (orientation: landscape) and (max-width: 767px) {
+    .Picture__item {
+        height: 100%;
+        width: auto;
+    }
+}
