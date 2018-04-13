@@ -29,8 +29,15 @@
     .Pictures {
         grid-auto-flow: dense;
         display: grid;
-        grid-gap: 10px;
-        grid-template-columns: repeat(auto-fill, minmax(1px, 5fr));
+        grid-gap: 5px;
+        grid-template-columns: repeat(auto-fill, minmax(2px, 1fr));
+        grid-template-rows: max-content;
+        /*display:flex;*/
+        /*flex-direction: row;*/
+        /*flex-wrap: wrap;*/
+        /*justify-content: space-around;*/
+        /*flex-grow: 0;*/
+        /*flex-shrink: 1;*/
     }
 
     .Picture__image_collection {

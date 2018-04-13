@@ -2,61 +2,50 @@ import React from 'react';
 import './Picture.css';
 
 export class Picture extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            url: props.url,
-            picture: "loading",
-            loading: true
-        }
+    getPictureHref(picture) {
+        const width = window.screen.width;
+        if (width > 4000)
+            return picture && picture.img && (picture.img.orig || picture.img.XXXL);
+        else if (width > 2000)
+            return picture && picture.img && (picture.img.XXXL || picture.img.XXL);
+        else if (width > 1000)
+            return picture && picture.img && (picture.img.XXL || picture.img.XL);
+        else
+            return picture && picture.img && (picture.img.XL || picture.img.L)
     }
 
+
     render() {
-        if (!this.state.loading && this.props.type === 'collection') {
-            let ratio = this.state.size ? Math.ceil((this.state.size.width / this.state.size.height) * 16) : '';
+        if (this.props.type === 'collection') {
+            const { width, height, href } = this.props.picture && this.props.picture.img && (this.props.picture.img.XL || this.props.picture.img.L);
+            let imageRatio = Math.ceil((width / height) * 35);
             return (<div className={"Picture__item "} style={{
-                    gridColumn: "span " + ratio
+                    gridColumn: "span " + imageRatio
                 }}>
-                    <img className="Picture__image_collection" src={this.state.picture.src} alt="Изображение"/>
+                    <picture>
+                        <img className="Picture__image_collection" id={this.props.id} src={href} alt="Изображение"/>
+                    </picture>
                 </div>
             );
         }
 
-        if (!this.state.loading && this.props.type === 'preview') {
-            let imageRatio = this.state.size ? (this.state.size.width / this.state.size.height) : '',
+        if (this.props.type === 'preview') {
+            debugger;
+            const { width, height, href } = this.getPictureHref(this.props.picture);
+            let imageRatio = width / height,
                 screenRatio = window.screen.width / window.screen.height,
-                width = 'auto',
-                height = 'auto';
+                widthProperty = 'auto',
+                heightProperty = 'auto';
 
             if (imageRatio >= screenRatio)
-                width = '100%';
+                widthProperty = '100%';
             else
-                height = '100%';
+                heightProperty = '100%';
 
-            return <img src={this.state.picture.src} alt="Изображение" style={{
-                width: width,
-                height: height
+            return <img src={href} alt="Изображение" style={{
+                width: widthProperty,
+                height: heightProperty
             }}/>;
         }
-
-        let url = this.state.url,
-            image = new Image(),
-            pic = this;
-
-        image.addEventListener('load', function () {
-            let size = {
-                height: image.naturalHeight,
-                width: image.naturalWidth
-            };
-            console.log(size.height + "x" + size.width);
-            pic.setState({
-                loading: false,
-                picture: image,
-                size: size
-            });
-        }, false);
-        image.src = url;
-
-        return <p>loading</p>;
     }
 }
