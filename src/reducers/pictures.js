@@ -18,6 +18,10 @@ const pictures = (state, action) => {
                 ...state,
                 loading:action.loading
             };
+        case 'PICTURES_RELOAD':
+            return{
+                ...state
+            };
         case 'PICTURES_LOADED':
             return {
                 ...state,
