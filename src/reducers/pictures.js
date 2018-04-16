@@ -4,11 +4,11 @@ const pictures = (state, action) => {
     if (!state) {
         return {
             pictures: DEFAULT_PICTURES,
-            next:null,
+            next: null,
             loading: true,
-            preview_mode:false,
-            preview_image:null,
-            number:0,
+            preview_mode: false,
+            preview_image: null,
+            number: 0,
         };
     }
 
@@ -16,18 +16,18 @@ const pictures = (state, action) => {
         case 'PICTURES_LOADING':
             return {
                 ...state,
-                loading:action.loading
+                loading: action.loading
             };
         case 'PICTURES_RELOAD':
-            return{
+            return {
                 ...state
             };
         case 'PICTURES_LOADED':
             return {
                 ...state,
-                pictures:state.pictures.concat(action.pictures),
+                pictures: state.pictures.concat(action.pictures),
                 next: action.next,
-                number: state.number+action.number,
+                number: state.number + action.number,
             };
         case 'PICTURES_LOAD_ERROR':
             return {

@@ -1,15 +1,15 @@
 import React from 'react';
-import {Overlay} from '../Overlay/Overlay';
-import {Button} from '../Button/Button';
-import {Picture} from '../Picture/Picture';
+import { Overlay } from '../Overlay/Overlay';
+import { Button } from '../Button/Button';
+import { Picture } from '../Picture/Picture';
 import fetchPictures from "../../actions/fetchPictures";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import './Preview.css';
 
 const stateToProps = state => ({
     picture: state.pictures.pictures[state.preview.picture_id],
     preview_id: state.preview.picture_id,
-    number:state.pictures.number,
+    number: state.pictures.number,
 });
 
 export const Preview = connect(stateToProps)(

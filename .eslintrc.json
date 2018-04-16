@@ -1,0 +1,39 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "extends": "airbnb",
+  "rules": {
+    "indent": [
+      "error",
+      4,
+      { "SwitchCase": 1 }
+    ],
+    "one-var": [
+      "error"
+    ],
+    "curly": [
+      "error",
+      "multi"
+    ],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": false,
+        "variables": false
+      }
+    ],
+    "prefer-template": [
+      "error"
+    ],
+    "padded-blocks": [
+      "error",
+      {
+        "blocks": "never"
+      }
+    ],
+    "func-names": ["error", "never"]
+  }
+}

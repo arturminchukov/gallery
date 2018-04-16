@@ -19,16 +19,16 @@ const preview = (state, action) => {
                 mode: false,
             };
         case 'PREVIEW_BACK':
-            if(state.picture_id===0)
+            if (state.picture_id === 0)
                 return state;
             return {
                 ...state,
-                picture_id: state.picture_id-1,
+                picture_id: state.picture_id - 1,
             };
         case 'PREVIEW_FORWARD':
             return {
                 ...state,
-                picture_id: state.picture_id+1,
+                picture_id: state.picture_id + 1,
             };
         default:
             return state;
