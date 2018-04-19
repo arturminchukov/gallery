@@ -97,14 +97,12 @@ export const Pictures = connect(stateToProps)(
                     image.ratio = image.width / image.height;
                     ratioSum += image.ratio;
                 });
-                const height = Math.floor((windowWidth - borderSummaryWidth) / ratioSum)
-                let checkSumWidth = 0;
+                const height = Math.floor((windowWidth - borderSummaryWidth) / ratioSum);
                 row.forEach(picture => {
                     const image = picture && picture.images && picture.images['480w_still'],
                         width = Math.round(height * image.ratio),
                         view = <Picture width={width} height={height} src={image.url} type='collection'
                                         key={picture.id} id={count++}/>;
-                    checkSumWidth += width;
                     picturesView.push(view);
                 });
             }

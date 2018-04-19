@@ -4,14 +4,8 @@ node_js:
 cache:
   directories:
   - node_modules
-script:
-  - npm run build
-env:
-  - NODE_ENV=production
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: df6a6d59d0141ad698d722fac2b414efc62fef86  # Set in travis-ci.org dashboard, marked secure
-  keep-history: true
-  on:
-    branch: master
+  provider: heroku
+  app: gallerria
+  api_key: f18d16f9-4a8b-4c29-80a8-0b8ebce13592
+  strategy: git

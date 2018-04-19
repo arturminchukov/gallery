@@ -16,7 +16,6 @@ export class Picture extends React.Component {
         }
 
         if (this.props.type === 'preview') {
-            debugger;
             const { width, height, url } = this.props.picture.images['480w_still'];
             let imageRatio = width / height,
                 screenRatio = window.screen.width / window.screen.height,
