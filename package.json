@@ -2,7 +2,6 @@
   "name": "gallery",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://api-fotki.yandex.ru",
   "homepage": "https://gallerria.herokuapp.com",
   "dependencies": {
     "react": "^16.3.2",

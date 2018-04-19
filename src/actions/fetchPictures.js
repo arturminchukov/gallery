@@ -1,3 +1,6 @@
+const URL = 'https://api.giphy.com/v1/gifs/search?api_key=WGzC0bAlkaa4t2YGPIZVnvXfCL5ECfS4&q=cars';
+const API_KEY = 'WGzC0bAlkaa4t2YGPIZVnvXfCL5ECfS4';
+
 export default function fetchPictures() {
     return async function (dispatch, getState) {
         dispatch({
@@ -9,13 +12,11 @@ export default function fetchPictures() {
             const state = getState();
             const quantity = getQuantity();
             let response;
-            if (!state.pictures.next)
-                response = await fetch(`/api/recent/?limit=${encodeURIComponent(quantity)}&format=json`, { credentials: 'same-origin' });
-            else
-                response = await fetch(`${state.pictures.next}?limit=${encodeURIComponent(quantity)}&format=json`, { credentials: 'same-origin' });
+            response = await fetch(`${URL}api_key=${API_KEY}&q=abstract&limit=${quantity}&offset=${state.pictures.next}&rating=G&lang=en&format=json`,
+                { credentials: 'same-origin' });
             const json = await response.json();
-            const pictures = json && json.entries;
-            const next = json && json.links && json.links.next && json.links.next.split('ru')[1].split('?')[0];
+            const pictures = json && json.data;
+            const next = json && json.pagination && json.pagination.count;
             dispatch({
                 type: 'PICTURES_LOADED',
                 pictures,

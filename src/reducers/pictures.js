@@ -4,7 +4,7 @@ const pictures = (state, action) => {
     if (!state) {
         return {
             pictures: DEFAULT_PICTURES,
-            next: null,
+            next: 0,
             loading: true,
             preview_mode: false,
             preview_image: null,
@@ -18,15 +18,11 @@ const pictures = (state, action) => {
                 ...state,
                 loading: action.loading
             };
-        case 'PICTURES_RELOAD':
-            return {
-                ...state
-            };
         case 'PICTURES_LOADED':
             return {
                 ...state,
                 pictures: state.pictures.concat(action.pictures),
-                next: action.next,
+                next: action.next+state.next,
                 number: state.number + action.number,
             };
         case 'PICTURES_LOAD_ERROR':

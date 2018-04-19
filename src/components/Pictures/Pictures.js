@@ -34,6 +34,7 @@ export const Pictures = connect(stateToProps)(
         componentDidMount() {
             document.addEventListener('click', this.onClick);
             window.addEventListener('resize', this.onResize);
+            this.fetchNext();
         }
 
         componentWillUnmount() {
@@ -65,18 +66,6 @@ export const Pictures = connect(stateToProps)(
             return window.screen.width;
         }
 
-        getPictureHref(picture) {
-            const width = window.screen.width;
-            if (width > 4000)
-                return picture && picture.img && (picture.img.orig || picture.img.XXXL);
-            else if (width > 2000)
-                return picture && picture.img && (picture.img.XXXL || picture.img.XXL);
-            else if (width > 1000)
-                return picture && picture.img && (picture.img.XXL || picture.img.XL);
-            else
-                return picture && picture.img && (picture.img.XL || picture.img.L)
-        }
-
         getQuantityElementInRow() {
             const width = this.getWindowWidth();
             if (width > 4000)
@@ -91,6 +80,9 @@ export const Pictures = connect(stateToProps)(
                 return 1;
         }
 
+        /**
+         * Функция рассчитывает ширину каждой картинки в зависимости солько их стоит в ряду
+         * */
         placePictures(pictures) {
             const quantity = this.getQuantityElementInRow(),
                 borderSummaryWidth = BORDER * (quantity + 1),
@@ -101,16 +93,16 @@ export const Pictures = connect(stateToProps)(
                 const row = pictures.slice(i, i + quantity);
                 let ratioSum = 0;
                 row.forEach((picture) => {
-                    let image = this.getPictureHref(picture);
+                    let image = picture && picture.images && picture.images['480w_still'];
                     image.ratio = image.width / image.height;
                     ratioSum += image.ratio;
                 });
-                const height = Math.floor((windowWidth - borderSummaryWidth) / ratioSum)/** this.getPictureHref(pictures[i]).ratio)*/;
+                const height = Math.floor((windowWidth - borderSummaryWidth) / ratioSum)
                 let checkSumWidth = 0;
                 row.forEach(picture => {
-                    const image = this.getPictureHref(picture),
+                    const image = picture && picture.images && picture.images['480w_still'],
                         width = Math.round(height * image.ratio),
-                        view = <Picture width={width} height={height} src={image.href} type='collection'
+                        view = <Picture width={width} height={height} src={image.url} type='collection'
                                         key={picture.id} id={count++}/>;
                     checkSumWidth += width;
                     picturesView.push(view);
@@ -123,6 +115,7 @@ export const Pictures = connect(stateToProps)(
             const PicturesViews = this.placePictures(this.props.pictures);
             if (this.state.loading)
                 return <div><h1>Loading</h1></div>;
+
             if (this.props.preview.mode)
                 return (<React.Fragment>
                     <Preview picture={this.props.pictures[this.props.preview.picture_id]}/>
@@ -131,8 +124,9 @@ export const Pictures = connect(stateToProps)(
                     })}
                     </div>
                 </React.Fragment>);
+
             return (
-                <InfiniteScroll fetchNext={this.fetchNext} next='this.props.next'>
+                <InfiniteScroll fetchNext={this.fetchNext} next={this.props.next}>
                     <div className="Pictures">{PicturesViews.map((picture) => {
                         return picture;
                     })}

@@ -2,20 +2,7 @@ import React from 'react';
 import './Picture.css';
 
 export class Picture extends React.Component {
-
-    getPictureHref(picture) {
-        const width = window.screen.width;
-        if (width > 4000)
-            return picture && picture.img && (picture.img.orig || picture.img.XXXL);
-        else if (width > 2000)
-            return picture && picture.img && (picture.img.XXXL || picture.img.XXL);
-        else if (width > 1000)
-            return picture && picture.img && (picture.img.XXL || picture.img.XL);
-        else
-            return picture && picture.img && (picture.img.XL || picture.img.L)
-    }
-
-
+    
     render() {
         if (this.props.type === 'collection') {
             return (<div className={"Picture__item "} style={{
@@ -29,7 +16,8 @@ export class Picture extends React.Component {
         }
 
         if (this.props.type === 'preview') {
-            const { width, height, href } = this.getPictureHref(this.props.picture);
+            debugger;
+            const { width, height, url } = this.props.picture.images['480w_still'];
             let imageRatio = width / height,
                 screenRatio = window.screen.width / window.screen.height,
                 widthProperty = 'auto',
@@ -40,7 +28,7 @@ export class Picture extends React.Component {
             else
                 heightProperty = '100%';
 
-            return <img src={href} alt="Изображение" style={{
+            return <img src={url} alt="Изображение" style={{
                 width: widthProperty,
                 height: heightProperty
             }}/>;
