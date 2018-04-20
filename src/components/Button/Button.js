@@ -2,7 +2,7 @@ import React from 'react';
 import './Button.css';
 
 export function Button(props) {
-    const direction = 'Button_' + props.direction;
+    const direction = `Button_${props.direction}`;
     let directionSymbol;
     if (props.direction === 'Left')
         directionSymbol = '<';
@@ -11,6 +11,6 @@ export function Button(props) {
     else
         directionSymbol = <React.Fragment>&times;</React.Fragment>;
     return (
-        <button className={'Button ' + direction}>{directionSymbol}</button>
+        <button className={`Button ${direction}`}>{directionSymbol}</button>
     );
 }

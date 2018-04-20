@@ -1,28 +1,27 @@
 import React from 'react';
-import { Picture } from '../Picture/Picture';
-import "./Pictures.css";
-import fetchPictures from "../../actions/fetchPictures";
 import { connect } from 'react-redux';
+import { Picture } from '../Picture/Picture';
+import './Pictures.css';
+import fetchPictures from '../../actions/fetchPictures';
 import { Preview } from '../Preview/Preview';
-import { InfiniteScroll } from "../InfiniteScroll/InfiniteScroll";
+import { InfiniteScroll } from '../InfiniteScroll/InfiniteScroll';
 
 const stateToProps = state => ({
     pictures: state.pictures.pictures,
     next: state.pictures.next,
     preview_mode: state.pictures.preview_mode,
-    preview: state.preview
+    preview: state.preview,
 });
 
 const BORDER = 10;
 
 export const Pictures = connect(stateToProps)(
     class Pictures extends React.Component {
-
         constructor(props) {
             super(props);
             this.state = {
                 loading: false,
-                resize: false
+                resize: false,
             };
             this.onClick = this.onClick.bind(this);
             this.onResize = this.onResize.bind(this);
@@ -101,8 +100,7 @@ export const Pictures = connect(stateToProps)(
                 row.forEach(picture => {
                     const image = picture && picture.images && picture.images['480w_still'],
                         width = Math.round(height * image.ratio),
-                        view = <Picture width={width} height={height} src={image.url} type='collection'
-                                        key={picture.id} id={count++}/>;
+                        view = <Picture width={width} height={height} src={image.url} type='collection' key={picture.id} id={count++}/>;
                     picturesView.push(view);
                 });
             }
@@ -117,7 +115,7 @@ export const Pictures = connect(stateToProps)(
             if (this.props.preview.mode)
                 return (<React.Fragment>
                     <Preview picture={this.props.pictures[this.props.preview.picture_id]}/>
-                    <div className="Pictures">{PicturesViews.map((picture) => {
+                    <div className='Pictures'>{PicturesViews.map((picture) => {
                         return picture;
                     })}
                     </div>
@@ -125,7 +123,7 @@ export const Pictures = connect(stateToProps)(
 
             return (
                 <InfiniteScroll fetchNext={this.fetchNext} next={this.props.next}>
-                    <div className="Pictures">{PicturesViews.map((picture) => {
+                    <div className='Pictures'>{PicturesViews.map((picture) => {
                         return picture;
                     })}
                     </div>

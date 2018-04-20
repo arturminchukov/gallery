@@ -6,7 +6,7 @@ export function Overlay(props) {
     if (!props)
         view = '';
     return (
-        <div className="Overlay">
+        <div className='Overlay'>
             {view}
         </div>
     );

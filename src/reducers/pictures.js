@@ -1,7 +1,7 @@
 const DEFAULT_PICTURES = [];
 
 const pictures = (state, action) => {
-    if (!state) {
+    if (!state)
         return {
             pictures: DEFAULT_PICTURES,
             next: 0,
@@ -10,7 +10,6 @@ const pictures = (state, action) => {
             preview_image: null,
             number: 0,
         };
-    }
 
     switch (action.type) {
         case 'PICTURES_LOADING':

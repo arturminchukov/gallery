@@ -9,14 +9,14 @@ export default function fetchPictures() {
         });
 
         try {
-            const state = getState();
-            const quantity = getQuantity();
+            const state = getState(),
+                quantity = getQuantity();
             let response;
             response = await fetch(`${URL}api_key=${API_KEY}&q=abstract&limit=${quantity}&offset=${state.pictures.next}&rating=G&lang=en&format=json`,
                 { credentials: 'same-origin' });
-            const json = await response.json();
-            const pictures = json && json.data;
-            const next = json && json.pagination && json.pagination.count;
+            const json = await response.json(),
+                pictures = json && json.data,
+                next = json && json.pagination && json.pagination.count;
             dispatch({
                 type: 'PICTURES_LOADED',
                 pictures,

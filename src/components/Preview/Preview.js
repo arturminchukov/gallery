@@ -2,7 +2,7 @@ import React from 'react';
 import { Overlay } from '../Overlay/Overlay';
 import { Button } from '../Button/Button';
 import { Picture } from '../Picture/Picture';
-import fetchPictures from "../../actions/fetchPictures";
+import fetchPictures from '../../actions/fetchPictures';
 import { connect } from 'react-redux';
 import './Preview.css';
 

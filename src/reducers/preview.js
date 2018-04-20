@@ -1,11 +1,11 @@
 const preview = (state, action) => {
-    if (!state) {
+    if (!state)
         return {
             loading: true,
             mode: false,
             picture_id: null,
         };
-    }
+
     switch (action.type) {
         case 'PREVIEW_SHOW':
             return {
