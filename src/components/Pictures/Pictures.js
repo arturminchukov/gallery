@@ -114,7 +114,7 @@ export const Pictures = connect(stateToProps)(
 
             if (this.props.preview.mode)
                 return (<React.Fragment>
-                    <Preview picture={this.props.pictures[this.props.preview.picture_id]}/>
+                    <Preview />
                     <div className='Pictures'>{PicturesViews.map((picture) => {
                         return picture;
                     })}
