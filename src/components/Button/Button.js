@@ -1,6 +1,15 @@
 import React from 'react';
 import './Button.css';
 
+/**
+ * Отрисовывает кнопку
+ *
+ * аттрибут direction:
+ *  Left - кнопка "Влево"
+ *  Right - кнопка "Вправо"
+ *  по умолчанию:
+ *    Exit - кнопка выхода
+ */
 export function Button(props) {
     const direction = `Button_${props.direction}`;
     let directionSymbol;
