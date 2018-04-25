@@ -31,5 +31,7 @@ export class Picture extends React.Component {
                 height: heightProperty
             }}/>;
         }
+
+        return <p>No picture type</p>;
     }
 }
