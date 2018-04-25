@@ -7,7 +7,7 @@ import rootReducer from './reducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-function middleware({ dispatch, getState }) {
+export function  middleware({ dispatch, getState }) {
     return next => (action) => {
         if (typeof action === 'function')
             return action(dispatch, getState);
