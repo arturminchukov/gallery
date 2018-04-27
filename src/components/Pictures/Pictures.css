@@ -35,6 +35,8 @@
         justify-content: space-evenly;
         flex-grow: 0;
         flex-shrink: 1;
+        width: 98vw;
+        margin: auto;
     }
 
     .Picture__image_collection {

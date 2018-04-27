@@ -2,7 +2,7 @@ import React from 'react';
 import './Picture.css';
 
 export class Picture extends React.Component {
-    
+
     render() {
         if (this.props.type === 'collection')
             return (<div className={'Picture__item '} style={{
@@ -15,9 +15,14 @@ export class Picture extends React.Component {
             );
 
         if (this.props.type === 'preview') {
-            const { width, height, url } = this.props.picture.images['480w_still'];
+            const { width, height, url } = this.props.picture.images['480w_still'],
+                screenWidth = (window && window.visualViewport && window.visualViewport.width) ||
+                    (window && window.screen && window.screen.width),
+                screenHeight = (window && window.visualViewport && window.visualViewport.height) ||
+                    (window && window.screen && window.screen.height);
+
             let imageRatio = width / height,
-                screenRatio = window.screen.width / window.screen.height,
+                screenRatio = screenWidth / screenHeight,
                 widthProperty = 'auto',
                 heightProperty = 'auto';
 

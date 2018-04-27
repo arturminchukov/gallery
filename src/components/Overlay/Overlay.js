@@ -1,11 +1,13 @@
 import React from 'react';
 import './Overlay.css';
+import { ConnectedPreview } from '../Preview/Preview';
 
-export function Overlay(props) {
-    let view = props.view ? props.view : '';
+export function Overlay() {
+    // let view = props.view ? props.view : '';
     return (
         <div className='Overlay'>
-            {view}
+            {/*{view}*/}
+            <ConnectedPreview />
         </div>
     );
 }

@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store'
 
-import { Preview } from './Preview';
+import {ConnectedPreview} from './Preview';
 configure({ adapter: new Adapter });
 
 describe('<Preview />', () => {
@@ -30,12 +30,12 @@ describe('<Preview />', () => {
 
     beforeEach(() => {
         store = mockStore(initialState);
-        wrapper = render(<Provider store={store}><Preview/></Provider>);
+        wrapper = render(<Provider store={store}><ConnectedPreview/></Provider>);
     });
 
     it('render preview', () => {
         expect(wrapper.find('img')[0].attribs.src).toMatch(initialState.pictures.pictures[0].images['480w_still'].url);
         expect(wrapper.find('button').length).toEqual(3);
-        expect(wrapper[0].attribs.class).toMatch('Overlay');
+        expect(wrapper[0].attribs.class).toMatch('Preview');
     });
 });

@@ -69,9 +69,19 @@ describe('Reducer pictures', () => {
     });
 
     it('picture reducer without state', () => {
+        const picture = {
+            images: {
+                ['480w_still']:{
+                    width:400,
+                    height:282,
+                    url : 'https://www.decomarket24.cz/out/pictures/1/1870-1-embankment_.jpg',
+                }
+            }
+        };
+        const DEFAULT_PICTURES = [...picture,...picture,...picture,...picture];
         const expectedState = {
-                pictures: [],
-                next: 0,
+                pictures: DEFAULT_PICTURES,
+                next: 1,
                 loading: true,
                 preview_mode: false,
                 preview_image: null,
